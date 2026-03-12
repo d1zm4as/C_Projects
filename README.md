@@ -6,6 +6,7 @@ Collection of small C experiments focused on low-level programming fundamentals.
 
 - `Build System`: Bash-based scaffolding tool to create C projects from templates.
 - `Analog Clock`: Raylib-based analog clock that renders hands from local system time.
+- `Simple Password Generator`: Generates a random password from a fixed character set.
 - `TCP Server`: Minimal TCP server that listens on port `8181` and replies to one client.
 - `TCP Sockets`: Basic TCP client that performs a simple HTTP `HEAD` request.
 - `Toralizer`: LD_PRELOAD wrapper that routes `connect()` calls through a SOCKS4 proxy (Tor-style).
