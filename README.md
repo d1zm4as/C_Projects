@@ -11,7 +11,7 @@ Collection of small C experiments focused on low-level programming fundamentals.
 - `Toralizer`: LD_PRELOAD wrapper that routes `connect()` calls through a SOCKS4 proxy (Tor-style).
 - `UI`: Terminal UI experiments using `ncurses`.
 - `Xor_encryption`: Small XOR demonstration for reversible byte-level encryption.
-- `zipador`: Small archiving/compression experiments.
+- `zipador`: Small archiving/compression experiments, still working on it.
 
 ## Notes
 
