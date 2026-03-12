@@ -8,7 +8,7 @@ Collection of small C experiments focused on low-level programming fundamentals.
 - `Analog Clock`: Raylib-based analog clock that renders hands from local system time.
 - `FibBenchmark`: CLI to benchmark big-Fibonacci implementations with a reference fast-doubling check.
 - `Simple Password Generator`: Generates a random password from a fixed character set.
-- `Ray Tracing`: Software ray tracer experiments (still working on it).
+- `Ray Tracing`: Software ray tracer experiments (still working on it). Current focus: camera setup, sphere/plane intersections, basic shading, and simple PPM output.
 - `TCP Server`: Minimal TCP server that listens on port `8181` and replies to one client.
 - `TCP Sockets`: Basic TCP client that performs a simple HTTP `HEAD` request.
 - `Toralizer`: LD_PRELOAD wrapper that routes `connect()` calls through a SOCKS4 proxy (Tor-style).
