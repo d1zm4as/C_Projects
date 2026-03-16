@@ -8,7 +8,8 @@
 #define COLOR_WHITE 0xffffffff
 #define COLOR_BLACK 0x00000000
 #define COLOR_GREY 0xefefefef
-#define RAYS_NUMBER 100
+#define COLOR_YELLOW 0xffffff00
+#define RAYS_NUMBER 360
 
 struct Circle
 {
@@ -119,7 +120,7 @@ int main(){
         SDL_FillRect(surface, &erase_rect, COLOR_BLACK);
         FillCircle(surface, circle, COLOR_WHITE);
         FillCircle(surface, shadow_circle, COLOR_WHITE);
-        FillRays(surface, rays, COLOR_GREY,shadow_circle);
+        FillRays(surface, rays, COLOR_YELLOW, shadow_circle);
 
         SDL_UpdateWindowSurface(window);
         SDL_Delay(10);
