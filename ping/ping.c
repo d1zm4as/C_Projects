@@ -1,0 +1,82 @@
+/* ping.c */
+#include "ping.h"
+
+int8 *evalicmp(icmp *pkt){
+    int8 *p,*ret;
+    int16 size;
+    struct s_rawicmp rawpkt;
+    struct s_rawicmp *rawptr;
+
+    int16 check;
+    if(!pkt || !pkt->data)
+        return $1 0;
+    switch(pkt->kind){
+        case echo:
+            rawpkt.type = 8;
+            rawpkt.code = 0;
+            break;
+        case echoreply:
+            rawpkt.type = 0;
+            rawpkt.code = 0;
+            rawpkt.checksum = 0;
+            copy(rawpkt.data, pkt->data, pkt->size);
+            size = sizeof(struct s_rawicmp) + pkt->size;
+            p = (int8 *)malloc($i size);
+            assert(p);
+            zero($1 p, size);
+            copy(p, (int8 *)&rawpkt, size);
+            break;
+        default:
+            return $1 0;
+    }
+    rawpkt.checksum = 0;
+    size = sizeof(struct s_rawicmp) + pkt->size;
+    if(size%2)
+        size++;
+    p = $1 malloc($i size);
+    ret = p;
+    assert(p);
+    zero($1 p, size);
+    copy(p, $1 &rawpkt, sizeof(struct s_rawicmp));
+    p += sizeof(struct s_rawicmp);
+    copy(p, pkt->data, pkt->size);
+    check = checksum(ret, size);
+    rawptr = (struct s_rawicmp *)ret;
+    rawptr->checksum = check;
+    return ret;
+
+}
+void copy(int8 *dst, int8 *src, int16 size){
+    int16 n;
+    int8 *sptr, *dptr;
+    for(dptr =dst, sptr=src, n=size;n; n-- )
+        *dptr++ = *sptr++;
+    return;
+}
+
+icmp *mkicmp (type kind, const int8 *data, int16 size){
+    int16 n;
+    icmp *p;
+    if (!data || !size) return (icmp*)0;
+    n = sizeof(struct s_icmp) + size;
+    p = (icmp *)malloc($i n);
+    assert(p);
+    zero($1 p, n);
+    p->kind = kind;
+    p->size = size;
+    p->data = data;
+    return p;
+}
+
+void showicmp(icmp *pkt){
+    if(!pkt) return;
+    printf("kind: \t  %s \nsize: \t %d\npayload:\n", pkt->kind == echo ? "echo" : "echoreply", $i pkt -> size);
+    if(pkt->data)
+        printhex(pkt->data, pkt->size,0);
+    printf("\n");
+    return;
+}
+
+int main(int argc, char *argv[]){
+    return 0;
+}
